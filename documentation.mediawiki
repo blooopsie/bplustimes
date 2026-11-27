@@ -1,0 +1,440 @@
+B+* is a C-based esolang made by [[User:Cordership]].
+=Syntax=
+==Basics==
+===Declaring variables===
+<pre>
+var_type var_name;
+</pre>
+A variable can be an integer, a float, a double, or a string.
+===Assigning values===
+<pre>
+var_name = var_value;
+</pre>
+It can be a string (%s), an integer (%d), a float (%f), or a double (%e).
+===STDIO===
+<pre>
+#include <stdio>
+</pre>
+Output by the printf() function:
+<pre>
+#include <stdio>
+int main() {
+    printf("Whatever you want");
+    exit 0;
+}
+</pre>
+Output using putchar() (accepts only 1-character strings or ints)
+<pre>
+#include <stdio>
+int main() {
+    putchar("W");
+    exit 0;
+}
+</pre>
+Assign input to a variable using getinp (reads the full input):
+<pre>
+#include <stdio>
+int main() {
+    str a;
+    getinp("%s", a);
+}
+</pre>
+Assign first character of input to variable:
+<pre>
+#include <stdio>
+int main() {
+    str a;
+    a = getchar();
+}
+</pre>
+[[Cat program|Cat program:]]
+<pre>
+#include <stdio>
+int main() {
+    str a;
+    getinp("%s", a);
+    printf("%s”, a);
+    exit 0;
+}
+</pre>
+
+===Operators===
+The order of operators is the same as C.
+{|class="wikitable" style="border-collapse: collapse"
+|-
+! style="text-align: left"|Precedence
+! style="text-align: left"|Operator
+! style="text-align: left"|Description
+! style="text-align: left"|Associativity
+|-
+! rowspan=6|1
+|style="border-bottom-style: none"|<code>++</code> <code>--</code>
+|style="border-bottom-style: none"|Postfix increment and decrement
+|style="vertical-align: top" rowspan="6"|Left-to-right
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>()</code>
+|style="border-bottom-style: none; border-top-style: none"|Function call
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>[]</code>
+|style="border-bottom-style: none; border-top-style: none"|Array subscripting
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>.</code>
+|style="border-bottom-style: none; border-top-style: none"|Structure and union member access
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>-&gt;</code>
+|style="border-bottom-style: none; border-top-style: none"|Structure and union member access through pointer
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>(''type''){''list''}</code>
+|style="border-bottom-style: none; border-top-style: none"|Compound literal
+|- style="border-top: 1px solid #aaa"
+! rowspan=9|2
+|style="border-bottom-style: none"|<code>++</code> <code>--</code>
+|style="border-bottom-style: none"|Prefix increment and decrement
+|style="vertical-align: top" rowspan="9"|Right-to-left
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>+</code> <code>-</code>
+|style="border-bottom-style: none; border-top-style: none"|Unary plus and minus
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>!</code> <code>~</code>
+|style="border-bottom-style: none; border-top-style: none"|Logical NOT and bitwise NOT
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>(''type'')</code>
+|style="border-bottom-style: none; border-top-style: none"|Cast
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>*</code>
+|style="border-bottom-style: none; border-top-style: none"|Indirection (dereference)
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>&</code>
+|style="border-bottom-style: none; border-top-style: none"|Address-of
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>count</code>
+|style="border-bottom-style: none; border-top-style: none"|Size-of in elements
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>sizeof</code>
+|style="border-bottom-style: none; border-top-style: none"|Size-of
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>_Alignof</code>
+|style="border-bottom-style: none; border-top-style: none"|Alignment requirement
+|- style="border-top: 1px solid #aaa"
+! 3
+|<code>*</code> <code>/</code> <code>%</code>
+|Multiplication, division, and remainder
+|style="vertical-align: top" rowspan="11"|Left-to-right
+|- style="border-top: 1px solid #aaa"
+! 4
+|<code>+</code> <code>-</code>
+|Addition and subtraction (Addition is concatenation if both sides are strings)
+|- style="border-top: 1px solid #aaa"
+! 5
+|<code>&lt;&lt;</code> <code>&gt;&gt;</code>
+|Bitwise left shift and right shift
+|- style="border-top: 1px solid #aaa"
+! rowspan=2|6
+|style="border-bottom-style: none"|<code>&lt;</code> <code>&lt;=</code>
+|style="border-bottom-style: none"|For relational operators < and ≤ respectively
+|-
+|style="border-top-style: none"|<code>&gt;</code> <code>&gt;=</code>
+|style="border-top-style: none"|For relational operators > and ≥ respectively
+|- style="border-top: 1px solid #aaa"
+! 7
+|<code>==</code> <code>!=</code>
+|For relational = and ≠ respectively
+|- style="border-top: 1px solid #aaa"
+! 8
+|<code>&amp;</code>
+|Bitwise AND
+|- style="border-top: 1px solid #aaa"
+! 9
+|<code>^</code>
+|Bitwise XOR (exclusive or)
+|- style="border-top: 1px solid #aaa"
+! 10
+|<code><nowiki>|</nowiki></code>
+|Bitwise OR (inclusive or)
+|- style="border-top: 1px solid #aaa"
+! 11
+|<code>&amp;&amp;</code>
+|Logical AND
+|- style="border-top: 1px solid #aaa"
+! 12
+|<code><nowiki>||</nowiki></code>
+|Logical OR
+|- style="border-top: 1px solid #aaa"
+! 13
+|<code>?:</code>
+|Ternary conditional
+|style="vertical-align: top" rowspan="6"|Right-to-left
+|- style="border-top: 1px solid #aaa"
+! rowspan=6|14
+|style="border-bottom-style: none"|<code>=</code>
+|style="border-bottom-style: none"|Simple assignment
+|-
+|style="border-bottom-style: none"|<code>:=</code>
+|style="border-bottom-style: none"|Walrus operator
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>+=</code> <code>-=</code>
+|style="border-bottom-style: none; border-top-style: none"|Assignment by sum and difference
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>*=</code> <code>/=</code> <code>%=</code>
+|style="border-bottom-style: none; border-top-style: none"|Assignment by product, quotient, and remainder
+|-
+|style="border-bottom-style: none; border-top-style: none"|<code>&lt;&lt;=</code> <code>&gt;&gt;=</code>
+|style="border-bottom-style: none; border-top-style: none"|Assignment by bitwise left shift and right shift
+|-
+|style="border-bottom-style: none; border-top-style: none""|<code>&amp;=</code> <code>^=</code> <code><nowiki>|</nowiki>=</code>
+|style="border-bottom-style: none; border-top-style: none""|Assignment by bitwise AND, XOR, and OR
+|- style="border-top: 1px solid #aaa"
+! 15
+|<code>,</code>
+|Comma
+|Left-to-right
+|}
+
+===If-else===
+1-branch:
+<pre>
+#include <stdio>
+main() {
+    if (condition) {
+        //code;
+}
+</pre>
+2-branch:
+<pre>
+#include <stdio>
+main() {
+    if (condition) {
+        //code;
+    } else {
+        //code;
+}
+</pre>
+Multiple if-then-elses:
+<pre>
+#include <stdio>
+main() {
+    if (cond1) {
+        //code;
+    // } else if (cond2) {...
+</pre>
+Ternary operator:
+<pre>
+#include <stdio>
+main() {
+    make int a, make int b;
+    getinp("%d %d", a, b);
+    make int max;
+    varf("%d", max, (a < b) ? b : a);
+    printf("The largest number is %d", max);
+    exit 0;
+</pre>
+
+===Loops===
+For loop:
+<pre>
+for (cond1; cond2; cond3;…) {
+    //code
+}
+</pre>
+While loop:
+<pre>
+while (cond) {
+    //code
+</pre>
+===Special cmds===
+<pre>
+break // Break out of current loop.
+pass // Placeholder for future code. It "passes" by an element.
+continue // Immediately halt execution of the current element.
+</pre>
+
+==in/not in==
+There is a special condition:
+<pre>
+element in container
+</pre>
+==Arrays==
+In B+, arrays are the same as C. They must be the same data type. To assign the value of an array, the same format specifier for its elements are used.
+For example,
+<pre>
+array n;
+n = {0, 1, 2, 5};
+</pre>
+There are nested arrays (matrices) too.
+<pre>
+array n;
+n = {{0, 1, 2}, {1, 2, 3}}
+</pre>
+The <code>sizeof</code> function returns the size of an array using bytes, while the <code>count</code> function returns the number of elements in an array.
+In C, arrays are of a predetermined length, while in B+, you can append and remove array elements.
+<pre>
+#include <stdio>
+#include <array>
+main() {
+    array n;
+    n = {0.0, 1.2, 2.5, 3.2};
+    n.append(4.5);
+    printf("%f", n); //Prints {0.0, 1.2, 2.5, 3.2, 4.5}.
+    exit 0;
+}
+</pre>
+Commands:
+<pre>
+array.append(item) // Appends an item to an array.
+array.removeindex(n) // Removes item at index n.
+array.replace(item1, item2, n) // Replaces the first n occurrences of an item with another item.
+array.mulappend(item, n) // Appends an item to an array n times.
+array.pop() // Removes the last item of an array.
+array[n] // Gets the nth element of an array.
+</pre>
+
+==Functions==
+In B+, functions are define the same way as C.
+<pre>
+#include <stdio>
+float f(float n) {
+    exit 0;
+}
+</pre>
+Here’s how it works:
+<pre>
+type f(type x, type y,...) {
+    // code
+    exit thing;
+}
+Use void to return nothing.
+</pre>
+==Strings==
+Commands:
+<pre>
+string.replace(item1, item2, n) // Replaces the first n occurrences of an item with another item.
+str.index(item) // Returns the index of an item’s first occurrence in a string.
+str.firstdigit() // First digit in a string.
+str.isdigit() // If a string has digits only…
+str.firstupper() // First uppercase letter in a string.
+str.isupper() // If a string has uppercase letters only…
+str.firstlower() // First lowercase letter in a string.
+str.islower() // If a string has lowercase letters only…
+str.firstspace() // First whitespace character in a string.
+str.isspace // If a string has whitespace only…
+str[n] // Gets the nth character of a string.
+str[a:b] // String slicing.
+count(str) // Length of a string.
+</pre>
+
+==Console IO==
+<pre>
+#include <conio>
+</pre>
+The commands are:
+<pre>
+cprintf() // Prints to console.
+cgtinp() // Get console user input
+clrscr() // Clear console and move cursor to top-left corner.
+getche() // Get character from console and directly print it. (One-time cat.)
+</pre>
+==Macros==
+There are two types: object-like and function-like.
+Object-like:
+<pre>
+#define PI 3.14159
+#define MAX_SIZE 500
+</pre>
+Function-like:
+<pre>
+#define SQUARE(x) (x)*(x)
+#define COL(x) ((x) % 2 == 0) ? (x)/2 : 3*(x)+1
+</pre>
+
+==Structs==
+Make a struct:
+<pre>
+struct StructureName {
+    type1 varname1;
+    type2 varname2;
+    ...
+}
+</pre>
+To access/change variables in structs:
+<pre>
+struct StructureName a;
+a.varname 1 = ...
+</pre>
+
+=Programs=
+==[[Hello, World!]]==
+<pre>
+#include <stdio>
+int main() {
+    printf("Hello, World!”);
+}
+</pre>
+==[[Cat program]]==
+<pre>
+#include <stdio>
+int main() {
+    str a;
+    getinp("%s", a);
+    printf("%s", a);
+}
+</pre>
+Want linefeeds to be printed?
+<pre>
+#include <stdio>
+int main() {
+    while (1) {
+        putchar(getchar());
+    }
+}
+</pre>
+
+==CT interpreter==
+<pre>
+#include <stdio>
+#include <string>
+int main() {
+    str ct(str d, str cmd) {
+        if (cmd == ";") {
+            exit d.replace(d.firstdigit(), " ", 1);
+        } else if (cmd.isdigit() && d.firstdigit() == "1" {
+            exit d + cmd;
+        } else {
+            exit d;
+        }
+    str p;
+    str d;
+    getinp("Enter the program: %s\nEnter the data-string: %s\n", p, d);
+    int t;
+    t = 0;
+    while (!d.isspace()) {
+        printf("%s", d := ct(d, p[t % count(p)]));
+        t += 1;
+    exit 0;
+}
+</pre>
+
+==[[4-function calculator]]==
+Format: {a}{op}{b}
+<pre>
+#include <stdio>
+int main() {
+    int a;
+    int b;
+    str c;
+    printf("Add, Subtract, Multiply, Divide by
+    getinp("%d %s %d\n", a, c, b);
+    int f(int a, int b) {
+        if (c == "+") {
+            exit a + b;
+        } else if (c == "-") {
+            exit a - b;
+        } else if (c == "*") {
+            exit a * b;
+        } else if (c == "/") {
+            exit a / b;
+        } else {
+            pass;
+        }
+    printf("%d", f(a, b));
+}
+</pre>
