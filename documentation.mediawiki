@@ -254,7 +254,7 @@ There is a special condition:
 element in container
 </pre>
 ==Arrays==
-In B+, arrays are the same as C. They must be the same data type. To assign the value of an array, the same format specifier for its elements are used.
+In B+, arrays are almost the same as C. They must be the same data type. To assign the value of an array, the same format specifier for its elements are used.
 For example,
 <pre>
 array n;
@@ -307,7 +307,7 @@ Use void to return nothing.
 ==Strings==
 Commands:
 <pre>
-string.replace(item1, item2, n) // Replaces the first n occurrences of an item with another item.
+str.replace(item1, item2, n) // Replaces the first n occurrences of an item with another item.
 str.index(item) // Returns the index of an item’s first occurrence in a string.
 str.firstdigit() // First digit in a string.
 str.isdigit() // If a string has digits only…
