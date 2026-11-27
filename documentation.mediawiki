@@ -1,4 +1,4 @@
-B+* is a C-based esolang made by [[User:Cordership]].
+B+* is a C-based programming language made by [[User:Cordership]].
 =Syntax=
 ==Basics==
 ===Declaring variables===
